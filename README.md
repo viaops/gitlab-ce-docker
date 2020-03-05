@@ -15,13 +15,13 @@ SSH_PORT | Ssh port
 HTTP_PORT | HTTP Port 
 HTTPS_PORT | HTTP/S Port
 
-#### - Custom TLS Certificates 
+#### - Custom TLS Certificates ( disable let's encrypt ) 
 Value | Description
 ------------ | -------------
 CERT_NAME | The filename of the TLS certificate
 CERT_KEY_NAME | The filename of the TLS private key. 
 
-#### - Let's Encrypt 
+#### - Let's Encrypt ( disable custom TLS )
 Value | Description
 ------------ | -------------
 LE_AUTO_RENEW | Enable Let's Encrypt certificate auto-renew. 
