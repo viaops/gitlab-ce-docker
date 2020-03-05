@@ -5,10 +5,12 @@ Deploy a gitlab server with docker-compose:
 3) Custom TLS/Self Signed Certificates
 4) SMTP
 
-## General configuration 
+## Variables 
+### /General configuration 
 Value | Description
 ------------ | -------------
-EXTERNAL_URL | Content 
-GITLAB_VERSION | Content 
-SSH_PORT | Content
-HTTP_PORT | 
+EXTERNAL_URL | https://gitlab.mydomain.com 
+GITLAB_VERSION | latest 
+SSH_PORT | 2222
+HTTP_PORT | 80 
+HTTPS_PORT | 8080
