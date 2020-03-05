@@ -11,10 +11,11 @@ services:
       - gitlab_data:/var/opt/gitlab
       - gitlab_logs:/var/log/gitlab
       - gitlab_config:/etc/gitlab
-      # attach the omnibus configuration and ssl certificates   
+      # enable only if custom TLS certificates are to be used and disable let's encrypt
+      #- ./conf/certs/${CERT_NAME}:/etc/gitlab/trusted-certs/${CERT_NAME}
+      #- ./conf/certs/${CERT_KEY_NAME}:/etc/gitlab/trusted-certs/${CERT_KEY_NAME}
+      # enable ldap
       - ./conf/gitlab.rb:/etc/gitlab/gitlab.rb
-      - ./conf/certs/${CERT_NAME}:/etc/gitlab/trusted-certs/${CERT_NAME}
-      - ./conf/certs/${CERT_KEY_NAME}:/etc/gitlab/trusted-certs/${CERT_KEY_NAME}
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         # General
@@ -26,6 +27,7 @@ services:
         nginx['ssl_certificate'] = "/etc/gitlab/trusted-certs/${CERT_NAME}"
         nginx['ssl_certificate_key'] = "/etc/gitlab/trusted-certs/${CERT_KEY_NAME}"
         # Let's encrypt
+        letsencrypt['contact_emails'] = ${LE_EMAIL}
         letsencrypt['auto_renew'] = ${LE_AUTO_RENEW}
         letsencrypt['enable'] = ${LE_ENABLE}}
         # SMTP
