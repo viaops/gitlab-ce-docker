@@ -11,11 +11,13 @@ services:
       - gitlab_data:/var/opt/gitlab
       - gitlab_logs:/var/log/gitlab
       - gitlab_config:/etc/gitlab
+
       # enable only if custom TLS certificates are to be used and disable let's encrypt
       #- ./conf/certs/${CERT_NAME}:/etc/gitlab/trusted-certs/${CERT_NAME}
       #- ./conf/certs/${CERT_KEY_NAME}:/etc/gitlab/trusted-certs/${CERT_KEY_NAME}
+      #
       # enable ldap
-      - ./conf/gitlab.rb:/etc/gitlab/gitlab.rb
+      #- ./conf/gitlab.rb:/etc/gitlab/gitlab.rb
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         # General
@@ -24,12 +26,16 @@ services:
         gitlab_rails['gitlab_shell_ssh_port'] = ${RAILS_SHELL_SSH_PORT}
         # Nginx
         nginx['redirect_http_to_https'] = true
-        nginx['ssl_certificate'] = "/etc/gitlab/trusted-certs/${CERT_NAME}"
-        nginx['ssl_certificate_key'] = "/etc/gitlab/trusted-certs/${CERT_KEY_NAME}"
+        #
+        # enable only if custom TLS certificates are to be used and disable let's encrypt
+        #
+        #nginx['ssl_certificate'] = "/etc/gitlab/trusted-certs/${CERT_NAME}"
+        #nginx['ssl_certificate_key'] = "/etc/gitlab/trusted-certs/${CERT_KEY_NAME}"
+        #
         # Let's encrypt
         letsencrypt['contact_emails'] = ${LE_EMAIL}
         letsencrypt['auto_renew'] = ${LE_AUTO_RENEW}
-        letsencrypt['enable'] = ${LE_ENABLE}
+        letsencrypt['enable'] = ${LE_ENABLE} # disable if custom TLS is to be used, check the .env file
         # SMTP
         gitlab_rails['smtp_enable'] = ${SMTP_ENABLE}
         gitlab_rails['smtp_address'] = "${SMTP_ADDRESS}"
