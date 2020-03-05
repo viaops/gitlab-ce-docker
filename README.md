@@ -1,3 +1,2 @@
 # Gitlab CE 
---
-Gitlab CE deployment with docker-compose and ldap authentication. 
+Deploy a gitlab server with docker-compose, optional ldap and let's encrypt configuration. 
