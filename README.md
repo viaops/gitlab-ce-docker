@@ -1,3 +1,7 @@
+<p align="right">
+  <a href="https://viaops.com" alt="Contributors">
+    <img src="https://img.shields.io/badge/gitlab--ce--docker-master-brightgreen" /></a></p>
+    
 # Gitlab CE 
 Deploy a gitlab server with docker-compose:
 1) LDAP 
