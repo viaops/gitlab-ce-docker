@@ -29,7 +29,7 @@ services:
         # Let's encrypt
         letsencrypt['contact_emails'] = ${LE_EMAIL}
         letsencrypt['auto_renew'] = ${LE_AUTO_RENEW}
-        letsencrypt['enable'] = ${LE_ENABLE}}
+        letsencrypt['enable'] = ${LE_ENABLE}
         # SMTP
         gitlab_rails['smtp_enable'] = ${SMTP_ENABLE}
         gitlab_rails['smtp_address'] = "${SMTP_ADDRESS}"
