@@ -6,7 +6,7 @@ Deploy a gitlab server with docker-compose:
 4) SMTP
 
 ## Variables
-### |- General configuration 
+#### - General configuration 
 Value | Description
 ------------ | -------------
 EXTERNAL_URL | The URL of the Gitlab server, example: https://gitlab.mydomain.com
@@ -15,13 +15,13 @@ SSH_PORT | Ssh port
 HTTP_PORT | HTTP Port 
 HTTPS_PORT | HTTP/S Port
 
-### |- Custom TLS Certificates 
+#### - Custom TLS Certificates 
 Value | Description
 ------------ | -------------
 CERT_NAME | The filename of the TLS certificate
 CERT_KEY_NAME | The filename of the TLS private key. 
 
-### |- Let's Encrypt 
+#### - Let's Encrypt 
 Value | Description
 ------------ | -------------
 LE_AUTO_RENEW | Enable Let's Encrypt certificate auto-renew. 
