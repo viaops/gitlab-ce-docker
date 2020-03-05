@@ -1,2 +1,2 @@
 # gitlab-ce-docker
-Gitlab CE deployment with docker. 
+Gitlab CE deployment with docker-compose and ldap authentication. 
