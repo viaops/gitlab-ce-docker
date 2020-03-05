@@ -21,7 +21,7 @@ main:
   ##
   ## Example: 'Paris' or 'Acme, Ltd.'
   ##
-  label: 'LDAP'
+  label: 'ldap'
 
   ##
   ## Example: 'ldap.mydomain.com'
