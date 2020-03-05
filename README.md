@@ -5,5 +5,5 @@ Deploy a gitlab server with docker-compose:
 3) Custom TLS/Self Signed Certificates
 4) SMTP
 
-# Variables <h1> tag
+# Variables <h1>
 
