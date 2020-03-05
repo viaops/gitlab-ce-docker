@@ -36,6 +36,10 @@ services:
         letsencrypt['contact_emails'] = ${LE_EMAIL}
         letsencrypt['auto_renew'] = ${LE_AUTO_RENEW}
         letsencrypt['enable'] = ${LE_ENABLE} # disable if custom TLS is to be used, check the .env file
+        # This example renews every 7th day at 12:30 | depends on ${LE_AUTO_RENEW}
+        letsencrypt['auto_renew_hour'] = "12"
+        letsencrypt['auto_renew_minute'] = "30"
+        letsencrypt['auto_renew_day_of_month'] = "*/7"
         # SMTP
         gitlab_rails['smtp_enable'] = ${SMTP_ENABLE}
         gitlab_rails['smtp_address'] = "${SMTP_ADDRESS}"
