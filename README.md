@@ -5,7 +5,7 @@ Deploy a gitlab server with docker-compose:
 3) Custom TLS/Self Signed Certificates
 4) SMTP
 
-## Variables 
+## Variables
 ### |- General configuration 
 Value | Description
 ------------ | -------------
@@ -20,4 +20,11 @@ Value | Description
 ------------ | -------------
 CERT_NAME | The filename of the TLS certificate
 CERT_KEY_NAME | The filename of the TLS private key. 
+
+### |- Let's Encrypt 
+Value | Description
+------------ | -------------
+LE_AUTO_RENEW | Enable Let's Encrypt certificate auto-renew. 
+LE_ENABLE | Enable Let's encrypt TLS certificates.
+LE_EMAIL | Let's encrypt contact email.
 
