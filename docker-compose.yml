@@ -1,0 +1,49 @@
+version: "3.6"
+#############################################################
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:${GITLAB_VERSION}
+    ports:
+      - "${SSH_PORT}"
+      - "${HTTP_PORT}"
+      - "${HTTPS_PORT}"
+    volumes:
+      - gitlab_data:/var/opt/gitlab
+      - gitlab_logs:/var/log/gitlab
+      - gitlab_config:/etc/gitlab
+      # attach the omnibus configuration and ssl certificates   
+      - ./conf/gitlab.rb:/etc/gitlab/gitlab.rb
+      - ./conf/certs/${CERT_NAME}:/etc/gitlab/trusted-certs/${CERT_NAME}
+      - ./conf/certs/${CERT_KEY_NAME}:/etc/gitlab/trusted-certs/${CERT_KEY_NAME}
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # General
+        external_url '${EXTERNAL_URL}'
+        # Omnibus
+        gitlab_rails['gitlab_shell_ssh_port'] = ${RAILS_SHELL_SSH_PORT}
+        # Nginx
+        nginx['redirect_http_to_https'] = true
+        nginx['ssl_certificate'] = "/etc/gitlab/trusted-certs/${CERT_NAME}"
+        nginx['ssl_certificate_key'] = "/etc/gitlab/trusted-certs/${CERT_KEY_NAME}"
+        # Let's encrypt
+        letsencrypt['auto_renew'] = ${LE_AUTO_RENEW}
+        letsencrypt['enable'] = ${LE_ENABLE}}
+        # SMTP
+        gitlab_rails['smtp_enable'] = ${SMTP_ENABLE}
+        gitlab_rails['smtp_address'] = "${SMTP_ADDRESS}"
+        gitlab_rails['smtp_port'] = ${SMTP_PORT}
+        gitlab_rails['smtp_authentication'] = ${SMTP_AUTHENTICATION}
+        gitlab_rails['smtp_enable_starttls_auto'] = ${SMTP_ENABLE_STARTLS_AUTO}
+        gitlab_rails['smtp_tls'] = ${SMTP_TLS}
+
+    networks:
+      - gitlab_net
+      
+# Volumes
+volumes:
+  gitlab_data:
+  gitlab_logs:
+  gitlab_config:  
+# Network
+networks:
+  gitlab_net:
