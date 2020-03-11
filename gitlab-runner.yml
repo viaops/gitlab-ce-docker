@@ -1,3 +1,6 @@
+version: "3.6"
+#############################################################
+services:
   gitlab-runner1:
     image: gitlab/gitlab-runner:latest
     container_name: gitlab-runner1
