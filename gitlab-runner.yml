@@ -1,13 +1,13 @@
 version: "3.6"
 #############################################################
 services:
-  gitlab-runner1:
+  gitlab-runner:
     image: gitlab/gitlab-runner:latest
     restart: always
-    container_name: gitlab-runner1
-    hostname: gitlab-runner1
+    container_name: gitlab-runner
+    hostname: gitlab-runner
     volumes:
-      - './gitlab-runner1-config:/etc/gitlab-runner:Z'
+      - './gitlab-runner-volume/config:/etc/gitlab-runner'
       - '/var/run/docker.sock:/var/run/docker.sock'
     networks:
       - gitlab_net
