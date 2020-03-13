@@ -1,0 +1,52 @@
+
+concurrent = 10
+check_interval = 0
+ 
+[session_server]
+  session_timeout = 1800
+ 
+[[runners]]
+  name = "runner-name"
+  url = "https://gitlab.mydomain.com/"
+  token = "#"
+  executor = "docker+machine"
+  [runners.custom_build_dir]
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+  [runners.docker]
+    tls_verify = false
+    image = "docker:latest"
+    privileged = true
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    volumes = ["/cache"]
+    shm_size = 0
+  [runners.machine]
+    IdleCount = 1
+    IdleTime = 1800
+    MaxBuilds = 10
+    OffPeakPeriods = [
+      "* * 0-6,19-23 * * mon-fri *",
+      "* * * * * sat,sun *"
+    ]
+    OffPeakIdleCount = 0
+    OffPeakIdleTime = 1200
+    MachineDriver = "amazonec2"
+    MachineName = "gitlab-docker-machine-%s"
+    MachineOptions = [
+      "amazonec2-access-key=#",
+      "amazonec2-secret-key=#",
+      "amazonec2-region=eu-west-1",
+      "amazonec2-vpc-id=#",
+      "amazonec2-subnet-id=#",
+      "amazonec2-use-private-address=true",
+      "amazonec2-tags=runner-manager-name,gitlab-aws-autoscaler,gitlab,true,gitlab-runner-autoscale,true",
+      "amazonec2-security-group=docker-machine-scaler",
+      "amazonec2-instance-type=t3.xlarge",
+      "amazonec2-request-spot-instance=true",
+      "amazonec2-spot-price=0.1",
+      "amazonec2-private-address-only=true",
+      "amazonec2-block-duration-minutes=60"
+    ]
